@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>TomLabs.PowerClam</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>Tomáš Bouda</authors>
+    <owners>TomasBouda</owners>
+    <licenseUrl>https://github.com/TomasBouda/PowerClam/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/TomasBouda/PowerClam</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>First release</releaseNotes>
+    <copyright>Copyright 2017 TomLabs</copyright>
+    <tags>powershell script runner execution</tags>
+  </metadata>
+</package>

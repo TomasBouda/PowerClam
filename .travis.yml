@@ -1,0 +1,6 @@
+﻿language: csharp
+solution: TomLabs.PowerClam.sln
+notifications:
+    on_success: never
+    on_failure: always
+    slack: tomlabsgroup:tGQoa8A2XO6qCWoI33g5R3Z9
