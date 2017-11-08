@@ -1,6 +1,12 @@
 # PowerClam [![NuGet](https://img.shields.io/nuget/v/TomLabs.PowerClam.svg)](https://www.nuget.org/packages/TomLabs.PowerClam/) [![Travis](https://travis-ci.org/TomasBouda/PowerClam.svg?branch=master)](https://travis-ci.org/TomasBouda/PowerClam)
 Small library for executing powershell scripts.
 
+## Requirements
+You need to run following powershell command in order to use this library
+```ps1
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted -Force
+```
+
 ## Usage
 
 ```cs
