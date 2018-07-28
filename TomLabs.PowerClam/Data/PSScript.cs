@@ -1,13 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace TomLabs.PowerClam.Data
 {
 	/// <summary>
 	/// Class that holds information about powershell script
 	/// </summary>
-	public class PSScipt
+	public class PSScript
 	{
 		/// <summary>
 		/// Script name
@@ -24,43 +26,24 @@ namespace TomLabs.PowerClam.Data
 		/// </summary>
 		public List<PSParam> Parameters { get; set; }
 
-		/// <summary>
-		/// Gets or sets whether app should prompt user for filling in parameter values before running
-		/// </summary>
-		public bool PromptParams { get; set; }
+		public string WorkingDirectory { get; set; }
 
-		/// <summary>
-		/// 
-		/// </summary>
-		public PSScipt()
+		[Obsolete("Only for serialization")]
+		public PSScript()
 		{
-
 		}
 
 		/// <summary>
-		/// 
+		/// Creates new instance of <see cref="PSScript"/> from script file
 		/// </summary>
 		/// <param name="path">Path to script</param>
-		public PSScipt(string path)
+		public PSScript(string path)
 		{
 			Path = path;
 			Name = System.IO.Path.GetFileNameWithoutExtension(Path);
-			LoadParameters();
-		}
+			WorkingDirectory = System.IO.Path.GetDirectoryName(Path);
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="path">Path to script</param>
-		/// <param name="parameters">Script parameters</param>
-		/// <param name="promptParams">Sets whether app should prompt user for filling in parameter values before running</param>
-		/// <param name="name">Script name</param>
-		public PSScipt(string path, List<PSParam> parameters, bool promptParams = false, string name = null)
-		{
-			Path = path;
-			Parameters = parameters;
-			PromptParams = promptParams;
-			Name = name ?? System.IO.Path.GetFileNameWithoutExtension(Path);
+			LoadParameters();
 		}
 
 		/// <summary>
@@ -73,6 +56,22 @@ namespace TomLabs.PowerClam.Data
 				var script = File.ReadAllText(Path);
 				Parameters = ParseParameters(script);
 			}
+		}
+
+		/// <summary>
+		/// Executes given script
+		/// </summary>
+		public ScriptOutput Execute()
+		{
+			return ScriptExecutor.ExecuteScript(this);
+		}
+
+		/// <summary>
+		/// Executes given script
+		/// </summary>
+		public async Task<ScriptOutput> ExecuteAsync()
+		{
+			return await ScriptExecutor.ExecuteScriptAsync(this);
 		}
 
 		/// <summary>

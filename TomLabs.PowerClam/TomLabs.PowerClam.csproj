@@ -46,12 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\ScriptOutput.cs" />
     <Compile Include="Extensions\LinqExtensions.cs" />
     <Compile Include="Extensions\PSExtensions.cs" />
     <Compile Include="Data\PSParam.cs" />
-    <Compile Include="Data\PSScipt.cs" />
+    <Compile Include="Data\PSScript.cs" />
     <Compile Include="PSCommands.cs" />
-    <Compile Include="ScriptRunner.cs" />
+    <Compile Include="ScriptExecutor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
